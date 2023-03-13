@@ -21,6 +21,7 @@ import dk.tbsalling.aismessages.nmea.exceptions.UnsupportedMessageType;
 import dk.tbsalling.aismessages.nmea.tagblock.NMEATagBlock;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +48,8 @@ public class NMEAMessage implements Serializable {
 		return new NMEAMessage(nmeaString);
 	}
 
+    private ZonedDateTime timestamp = null;
+
 	public final boolean isValid() {
         String messageType = getMessageType();
 
@@ -59,6 +62,14 @@ public class NMEAMessage implements Serializable {
 
 		return true;
 	}
+
+    public ZonedDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(ZonedDateTime ts) {
+        timestamp=ts;
+    }
 
     @SuppressWarnings("unused")
 	public String getMessageType() {
